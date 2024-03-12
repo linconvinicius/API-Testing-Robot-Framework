@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.2 on win32)" generated="2024-03-12T14:34:55.823385" rpa="false" schemaversion="5">
+<suite id="s1" name="Api Testing Usuarios" source="c:\Users\lincongoncalves\desktop\API\api-tests-robot-framework\tests\api_testing_usuarios.robot">
+<test id="s1-t1" name="Cenário 01: Cadastrar um novo usuário com sucesso na ServeRest" line="6">
+<kw name="Criar um usuário novo" owner="api_testing_usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2024-03-12T14:34:56.009425" level="INFO">${palavra_aleatoria} = OpHE</msg>
+<var>${palavra_aleatoria}</var>
+<arg>length=4</arg>
+<arg>chars=[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2024-03-12T14:34:56.008426" elapsed="0.004996"/>
+</kw>
+<kw name="Convert To Lower Case" owner="String">
+<msg time="2024-03-12T14:34:56.013422" level="INFO">${palavra_aleatoria} = ophe</msg>
+<var>${palavra_aleatoria}</var>
+<arg>${palavra_aleatoria}</arg>
+<doc>Converts string to lower case.</doc>
+<status status="PASS" start="2024-03-12T14:34:56.013422" elapsed="0.000999"/>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-03-12T14:34:56.014421" level="INFO">${EMAIL_TESTE} = ophe@emailteste.com</msg>
+<arg>${EMAIL_TESTE}</arg>
+<arg>${palavra_aleatoria}@emailteste.com</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-03-12T14:34:56.014421" elapsed="0.001000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:56.015421" level="INFO">ophe@emailteste.com</msg>
+<arg>${EMAIL_TESTE}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:56.015421" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:56.007402" elapsed="0.008019"/>
+</kw>
+<kw name="Cadastrar o usuário criado na ServeRest" owner="api_testing_usuarios">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-03-12T14:34:56.017443" level="INFO">${body} = {'nome': 'Fulano da Silva', 'email': 'ophe@emailteste.com', 'password': '1234', 'administrador': 'true'}</msg>
+<var>${body}</var>
+<arg>nome=Fulano da Silva</arg>
+<arg>email=${email}</arg>
+<arg>password=1234</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-03-12T14:34:56.017443" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:56.017443" level="INFO">{'nome': 'Fulano da Silva', 'email': 'ophe@emailteste.com', 'password': '1234', 'administrador': 'true'}</msg>
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:56.017443" elapsed="0.000000"/>
+</kw>
+<kw name="Criar Sessão na ServeRest" owner="api_testing_usuarios">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-03-12T14:34:56.018855" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-03-12T14:34:56.018855" elapsed="0.000000"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-03-12T14:34:56.020174" level="INFO">Creating Session using : alias=ServeRest, url=https://serverest.dev, headers={'accept': 'application/json', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=ServeRest</arg>
+<arg>url=https://serverest.dev</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-03-12T14:34:56.018855" elapsed="0.001319"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:56.018855" elapsed="0.002410"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-03-12T14:34:57.299595" level="INFO">POST Request : url=https://serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '104'} 
+ body=b'{"nome": "Fulano da Silva", "email": "ophe@emailteste.com", "password": "1234", "administrador": "true"}' 
+ </msg>
+<msg time="2024-03-12T14:34:57.299595" level="INFO">POST Response : url=https://serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': '4d489a329d1f94f655b07c6f2c4183b7;o=1', 'Date': 'Tue, 12 Mar 2024 17:34:56 GMT', 'Server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "AoKha7DPbcNlBv4z"
+} 
+ </msg>
+<msg time="2024-03-12T14:34:57.299595" level="INFO">C:\Users\lincongoncalves\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-03-12T14:34:57.302302" level="INFO">${resposta} = &lt;Response [201]&gt;</msg>
+<var>${resposta}</var>
+<arg>alias=ServeRest</arg>
+<arg>url=/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=${status_code_desejado}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-03-12T14:34:56.021265" elapsed="1.281037"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.304316" level="INFO">{'message': 'Cadastro realizado com sucesso', '_id': 'AoKha7DPbcNlBv4z'}</msg>
+<arg>${resposta.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.303325" elapsed="0.000991"/>
+</kw>
+<if>
+<branch type="IF" condition="${resposta.status_code} == 201">
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.308687" level="INFO">${ID_USUARIO} = AoKha7DPbcNlBv4z</msg>
+<arg>${ID_USUARIO}</arg>
+<arg>${resposta.json()["_id"]}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.306474" elapsed="0.003267"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:57.305415" elapsed="0.004326"/>
+</branch>
+<status status="PASS" start="2024-03-12T14:34:57.305415" elapsed="0.004326"/>
+</if>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.312269" level="INFO">${RESPOSTA} = {'message': 'Cadastro realizado com sucesso', '_id': 'AoKha7DPbcNlBv4z'}</msg>
+<arg>${RESPOSTA}</arg>
+<arg>${resposta.json()}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.309741" elapsed="0.002528"/>
+</kw>
+<arg>email=${EMAIL_TESTE}</arg>
+<arg>status_code_desejado=201</arg>
+<status status="PASS" start="2024-03-12T14:34:56.016420" elapsed="1.295849"/>
+</kw>
+<kw name="Conferir se o usuário foi cadastrado corretamente" owner="api_testing_usuarios">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.314269" level="INFO">{'message': 'Cadastro realizado com sucesso', '_id': 'AoKha7DPbcNlBv4z'}</msg>
+<arg>${RESPOSTA}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.314269" elapsed="0.000999"/>
+</kw>
+<kw name="Dictionary Should Contain Item" owner="Collections">
+<msg time="2024-03-12T14:34:57.316279" level="INFO">False
+False</msg>
+<arg>${RESPOSTA}</arg>
+<arg>message</arg>
+<arg>Cadastro realizado com sucesso</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.315268" elapsed="0.001011"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<msg time="2024-03-12T14:34:57.317280" level="INFO">False</msg>
+<arg>${RESPOSTA}</arg>
+<arg>_id</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.316279" elapsed="0.001001"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:57.313288" elapsed="0.003992"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:56.006361" elapsed="1.311918"/>
+</test>
+<test id="s1-t2" name="Cenário 02: Cadastrar um usuário já existente" line="11">
+<kw name="Criar um usuário novo" owner="api_testing_usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2024-03-12T14:34:57.322842" level="INFO">${palavra_aleatoria} = iiLb</msg>
+<var>${palavra_aleatoria}</var>
+<arg>length=4</arg>
+<arg>chars=[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.321819" elapsed="0.001023"/>
+</kw>
+<kw name="Convert To Lower Case" owner="String">
+<msg time="2024-03-12T14:34:57.323837" level="INFO">${palavra_aleatoria} = iilb</msg>
+<var>${palavra_aleatoria}</var>
+<arg>${palavra_aleatoria}</arg>
+<doc>Converts string to lower case.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.322842" elapsed="0.000995"/>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.325835" level="INFO">${EMAIL_TESTE} = iilb@emailteste.com</msg>
+<arg>${EMAIL_TESTE}</arg>
+<arg>${palavra_aleatoria}@emailteste.com</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.323837" elapsed="0.001998"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.326835" level="INFO">iilb@emailteste.com</msg>
+<arg>${EMAIL_TESTE}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.325835" elapsed="0.001000"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:57.320793" elapsed="0.006042"/>
+</kw>
+<kw name="Cadastrar o usuário criado na ServeRest" owner="api_testing_usuarios">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.328837" level="INFO">${body} = {'nome': 'Fulano da Silva', 'email': 'iilb@emailteste.com', 'password': '1234', 'administrador': 'true'}</msg>
+<var>${body}</var>
+<arg>nome=Fulano da Silva</arg>
+<arg>email=${email}</arg>
+<arg>password=1234</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.327836" elapsed="0.002031"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.330837" level="INFO">{'nome': 'Fulano da Silva', 'email': 'iilb@emailteste.com', 'password': '1234', 'administrador': 'true'}</msg>
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.329867" elapsed="0.000970"/>
+</kw>
+<kw name="Criar Sessão na ServeRest" owner="api_testing_usuarios">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.331869" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.331869" elapsed="0.000978"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-03-12T14:34:57.332847" level="INFO">Creating Session using : alias=ServeRest, url=https://serverest.dev, headers={'accept': 'application/json', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=ServeRest</arg>
+<arg>url=https://serverest.dev</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-03-12T14:34:57.332847" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:57.330837" elapsed="0.003410"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-03-12T14:34:57.739513" level="INFO">POST Request : url=https://serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '104'} 
+ body=b'{"nome": "Fulano da Silva", "email": "iilb@emailteste.com", "password": "1234", "administrador": "true"}' 
+ </msg>
+<msg time="2024-03-12T14:34:57.739513" level="INFO">POST Response : url=https://serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': '270a22a0b35842ec61192378200c6108', 'Date': 'Tue, 12 Mar 2024 17:34:57 GMT', 'Server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "nqH2B5f6p5h5LAO0"
+} 
+ </msg>
+<msg time="2024-03-12T14:34:57.739513" level="INFO">C:\Users\lincongoncalves\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-03-12T14:34:57.742057" level="INFO">${resposta} = &lt;Response [201]&gt;</msg>
+<var>${resposta}</var>
+<arg>alias=ServeRest</arg>
+<arg>url=/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=${status_code_desejado}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.334247" elapsed="0.407810"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.744071" level="INFO">{'message': 'Cadastro realizado com sucesso', '_id': 'nqH2B5f6p5h5LAO0'}</msg>
+<arg>${resposta.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.743079" elapsed="0.000992"/>
+</kw>
+<if>
+<branch type="IF" condition="${resposta.status_code} == 201">
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.748070" level="INFO">${ID_USUARIO} = nqH2B5f6p5h5LAO0</msg>
+<arg>${ID_USUARIO}</arg>
+<arg>${resposta.json()["_id"]}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.746071" elapsed="0.003005"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:57.745072" elapsed="0.004004"/>
+</branch>
+<status status="PASS" start="2024-03-12T14:34:57.745072" elapsed="0.004004"/>
+</if>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.750228" level="INFO">${RESPOSTA} = {'message': 'Cadastro realizado com sucesso', '_id': 'nqH2B5f6p5h5LAO0'}</msg>
+<arg>${RESPOSTA}</arg>
+<arg>${resposta.json()}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.749076" elapsed="0.001152"/>
+</kw>
+<arg>email=${EMAIL_TESTE}</arg>
+<arg>status_code_desejado=201</arg>
+<status status="PASS" start="2024-03-12T14:34:57.327836" elapsed="0.422392"/>
+</kw>
+<kw name="Vou repetir o cadastro do usuário" owner="api_testing_usuarios">
+<kw name="Cadastrar o usuário criado na ServeRest" owner="api_testing_usuarios">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.754171" level="INFO">${body} = {'nome': 'Fulano da Silva', 'email': 'iilb@emailteste.com', 'password': '1234', 'administrador': 'true'}</msg>
+<var>${body}</var>
+<arg>nome=Fulano da Silva</arg>
+<arg>email=${email}</arg>
+<arg>password=1234</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.754171" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.755207" level="INFO">{'nome': 'Fulano da Silva', 'email': 'iilb@emailteste.com', 'password': '1234', 'administrador': 'true'}</msg>
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.755207" elapsed="0.000000"/>
+</kw>
+<kw name="Criar Sessão na ServeRest" owner="api_testing_usuarios">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-03-12T14:34:57.756222" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.756222" elapsed="0.000000"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-03-12T14:34:57.757216" level="INFO">Creating Session using : alias=ServeRest, url=https://serverest.dev, headers={'accept': 'application/json', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=ServeRest</arg>
+<arg>url=https://serverest.dev</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-03-12T14:34:57.756222" elapsed="0.000994"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:57.755207" elapsed="0.002009"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-03-12T14:34:58.122883" level="INFO">POST Request : url=https://serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '104'} 
+ body=b'{"nome": "Fulano da Silva", "email": "iilb@emailteste.com", "password": "1234", "administrador": "true"}' 
+ </msg>
+<msg time="2024-03-12T14:34:58.122883" level="INFO">POST Response : url=https://serverest.dev/usuarios 
+ status=400, reason=Bad Request 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': 'f563f057e4227d35cb6a2516b4d8a320', 'Date': 'Tue, 12 Mar 2024 17:34:58 GMT', 'Server': 'Google Frontend', 'Content-Length': '53'} 
+ body={
+    "message": "Este email já está sendo usado"
+} 
+ </msg>
+<msg time="2024-03-12T14:34:58.122883" level="INFO">C:\Users\lincongoncalves\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-03-12T14:34:58.123886" level="INFO">${resposta} = &lt;Response [400]&gt;</msg>
+<var>${resposta}</var>
+<arg>alias=ServeRest</arg>
+<arg>url=/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=${status_code_desejado}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-03-12T14:34:57.757216" elapsed="0.366670"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.125885" level="INFO">{'message': 'Este email já está sendo usado'}</msg>
+<arg>${resposta.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.124884" elapsed="0.001001"/>
+</kw>
+<if>
+<branch type="IF" condition="${resposta.status_code} == 201">
+<kw name="Set Test Variable" owner="BuiltIn">
+<arg>${ID_USUARIO}</arg>
+<arg>${resposta.json()["_id"]}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="NOT RUN" start="2024-03-12T14:34:58.126885" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-03-12T14:34:58.125885" elapsed="0.001000"/>
+</branch>
+<status status="PASS" start="2024-03-12T14:34:58.125885" elapsed="0.001000"/>
+</if>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.127884" level="INFO">${RESPOSTA} = {'message': 'Este email já está sendo usado'}</msg>
+<arg>${RESPOSTA}</arg>
+<arg>${resposta.json()}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.127884" elapsed="0.000000"/>
+</kw>
+<arg>email=${EMAIL_TESTE}</arg>
+<arg>status_code_desejado=400</arg>
+<status status="PASS" start="2024-03-12T14:34:57.752238" elapsed="0.375646"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:57.752238" elapsed="0.376646"/>
+</kw>
+<kw name="Verificar se a API não permitiu o cadastro repetido" owner="api_testing_usuarios">
+<kw name="Dictionary Should Contain Item" owner="Collections">
+<msg time="2024-03-12T14:34:58.129935" level="INFO">False
+False</msg>
+<arg>${RESPOSTA}</arg>
+<arg>message</arg>
+<arg>Este email já está sendo usado</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.128884" elapsed="0.001051"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:58.128884" elapsed="0.001051"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:57.319280" elapsed="0.811673"/>
+</test>
+<test id="s1-t3" name="Cenário 03: Consultar os dados de um novo usuário" line="17">
+<kw name="Criar um usuário novo" owner="api_testing_usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2024-03-12T14:34:58.133993" level="INFO">${palavra_aleatoria} = mpZp</msg>
+<var>${palavra_aleatoria}</var>
+<arg>length=4</arg>
+<arg>chars=[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.133993" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Lower Case" owner="String">
+<msg time="2024-03-12T14:34:58.135020" level="INFO">${palavra_aleatoria} = mpzp</msg>
+<var>${palavra_aleatoria}</var>
+<arg>${palavra_aleatoria}</arg>
+<doc>Converts string to lower case.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.133993" elapsed="0.001027"/>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.136084" level="INFO">${EMAIL_TESTE} = mpzp@emailteste.com</msg>
+<arg>${EMAIL_TESTE}</arg>
+<arg>${palavra_aleatoria}@emailteste.com</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.135020" elapsed="0.002109"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.137129" level="INFO">mpzp@emailteste.com</msg>
+<arg>${EMAIL_TESTE}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.137129" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:58.132994" elapsed="0.004135"/>
+</kw>
+<kw name="Cadastrar o usuário criado na ServeRest" owner="api_testing_usuarios">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.139374" level="INFO">${body} = {'nome': 'Fulano da Silva', 'email': 'mpzp@emailteste.com', 'password': '1234', 'administrador': 'true'}</msg>
+<var>${body}</var>
+<arg>nome=Fulano da Silva</arg>
+<arg>email=${email}</arg>
+<arg>password=1234</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.139374" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.139374" level="INFO">{'nome': 'Fulano da Silva', 'email': 'mpzp@emailteste.com', 'password': '1234', 'administrador': 'true'}</msg>
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.139374" elapsed="0.000000"/>
+</kw>
+<kw name="Criar Sessão na ServeRest" owner="api_testing_usuarios">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.140880" level="INFO">${headers} = {'accept': 'application/json', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.140880" elapsed="0.000000"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-03-12T14:34:58.142349" level="INFO">Creating Session using : alias=ServeRest, url=https://serverest.dev, headers={'accept': 'application/json', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=ServeRest</arg>
+<arg>url=https://serverest.dev</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-03-12T14:34:58.142349" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:58.139374" elapsed="0.002975"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-03-12T14:34:58.505053" level="INFO">POST Request : url=https://serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '104'} 
+ body=b'{"nome": "Fulano da Silva", "email": "mpzp@emailteste.com", "password": "1234", "administrador": "true"}' 
+ </msg>
+<msg time="2024-03-12T14:34:58.506052" level="INFO">POST Response : url=https://serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': '5e1d670fda09fe7a05834d0f9744eb1c', 'Date': 'Tue, 12 Mar 2024 17:34:58 GMT', 'Server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "WBiYBfd3kYMTiX5G"
+} 
+ </msg>
+<msg time="2024-03-12T14:34:58.506052" level="INFO">C:\Users\lincongoncalves\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-03-12T14:34:58.507058" level="INFO">${resposta} = &lt;Response [201]&gt;</msg>
+<var>${resposta}</var>
+<arg>alias=ServeRest</arg>
+<arg>url=/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=${status_code_desejado}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.143355" elapsed="0.363703"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.508584" level="INFO">{'message': 'Cadastro realizado com sucesso', '_id': 'WBiYBfd3kYMTiX5G'}</msg>
+<arg>${resposta.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.507572" elapsed="0.001012"/>
+</kw>
+<if>
+<branch type="IF" condition="${resposta.status_code} == 201">
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.509592" level="INFO">${ID_USUARIO} = WBiYBfd3kYMTiX5G</msg>
+<arg>${ID_USUARIO}</arg>
+<arg>${resposta.json()["_id"]}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.509592" elapsed="0.001507"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:58.508584" elapsed="0.002515"/>
+</branch>
+<status status="PASS" start="2024-03-12T14:34:58.508584" elapsed="0.002515"/>
+</if>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.512118" level="INFO">${RESPOSTA} = {'message': 'Cadastro realizado com sucesso', '_id': 'WBiYBfd3kYMTiX5G'}</msg>
+<arg>${RESPOSTA}</arg>
+<arg>${resposta.json()}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.511099" elapsed="0.001019"/>
+</kw>
+<arg>email=${EMAIL_TESTE}</arg>
+<arg>status_code_desejado=201</arg>
+<status status="PASS" start="2024-03-12T14:34:58.138365" elapsed="0.373753"/>
+</kw>
+<kw name="Consultar os dados do novo usuário" owner="api_testing_usuarios">
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-03-12T14:34:58.678153" level="INFO">GET Request : url=https://serverest.dev/usuarios/WBiYBfd3kYMTiX5G 
+ path_url=/usuarios/WBiYBfd3kYMTiX5G 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg time="2024-03-12T14:34:58.679355" level="INFO">GET Response : url=https://serverest.dev/usuarios/WBiYBfd3kYMTiX5G 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': '9a860ea5d22da7061a6e509cb06f6379', 'Date': 'Tue, 12 Mar 2024 17:34:58 GMT', 'Server': 'Google Frontend', 'Content-Length': '153'} 
+ body={
+    "nome": "Fulano da Silva",
+    "email": "mpzp@emailteste.com",
+    "password": "1234",
+    "administrador": "true",
+    "_id": "WBiYBfd3kYMTiX5G"
+} 
+ </msg>
+<msg time="2024-03-12T14:34:58.679355" level="INFO">C:\Users\lincongoncalves\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-03-12T14:34:58.680643" level="INFO">${resposta_consulta} = &lt;Response [200]&gt;</msg>
+<var>${resposta_consulta}</var>
+<arg>alias=ServeRest</arg>
+<arg>url=/usuarios/${ID_USUARIO}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.513424" elapsed="0.167219"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.682660" level="INFO">200</msg>
+<arg>${resposta_consulta.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.681658" elapsed="0.001002"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.683656" level="INFO">OK</msg>
+<arg>${resposta_consulta.reason}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.682660" elapsed="0.002001"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.685169" level="INFO">{'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': '9a860ea5d22da7061a6e509cb06f6379', 'Date': 'Tue, 12 Mar 2024 17:34:58 GMT', 'Server': 'Google Frontend', 'Content-Length': '153'}</msg>
+<arg>${resposta_consulta.headers}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.685169" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.686330" level="INFO">0:00:00.163502</msg>
+<arg>${resposta_consulta.elapsed}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.686330" elapsed="0.001009"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.687339" level="INFO">{
+    "nome": "Fulano da Silva",
+    "email": "mpzp@emailteste.com",
+    "password": "1234",
+    "administrador": "true",
+    "_id": "WBiYBfd3kYMTiX5G"
+}</msg>
+<arg>${resposta_consulta.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.687339" elapsed="0.001008"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.689349" level="INFO">{'nome': 'Fulano da Silva', 'email': 'mpzp@emailteste.com', 'password': '1234', 'administrador': 'true', '_id': 'WBiYBfd3kYMTiX5G'}</msg>
+<arg>${resposta_consulta.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.688347" elapsed="0.001002"/>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.690856" level="INFO">${RESP_CONSULTA} = {'nome': 'Fulano da Silva', 'email': 'mpzp@emailteste.com', 'password': '1234', 'administrador': 'true', '_id': 'WBiYBfd3kYMTiX5G'}</msg>
+<arg>${RESP_CONSULTA}</arg>
+<arg>${resposta_consulta.json()}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.689349" elapsed="0.001507"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:58.513424" elapsed="0.177432"/>
+</kw>
+<kw name="Conferir os dados retornados" owner="api_testing_usuarios">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-12T14:34:58.692976" level="INFO">{'nome': 'Fulano da Silva', 'email': 'mpzp@emailteste.com', 'password': '1234', 'administrador': 'true', '_id': 'WBiYBfd3kYMTiX5G'}</msg>
+<arg>${RESP_CONSULTA}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.691870" elapsed="0.001106"/>
+</kw>
+<kw name="Dictionary Should Contain Item" owner="Collections">
+<msg time="2024-03-12T14:34:58.693987" level="INFO">False
+False</msg>
+<arg>${RESP_CONSULTA}</arg>
+<arg>nome</arg>
+<arg>Fulano da Silva</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.692976" elapsed="0.001011"/>
+</kw>
+<kw name="Dictionary Should Contain Item" owner="Collections">
+<msg time="2024-03-12T14:34:58.694991" level="INFO">False
+False</msg>
+<arg>${RESP_CONSULTA}</arg>
+<arg>email</arg>
+<arg>${EMAIL_TESTE}</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.694991" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Item" owner="Collections">
+<msg time="2024-03-12T14:34:58.694991" level="INFO">False
+False</msg>
+<arg>${RESP_CONSULTA}</arg>
+<arg>password</arg>
+<arg>1234</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.694991" elapsed="0.000994"/>
+</kw>
+<kw name="Dictionary Should Contain Item" owner="Collections">
+<msg time="2024-03-12T14:34:58.695985" level="INFO">False
+False</msg>
+<arg>${RESP_CONSULTA}</arg>
+<arg>administrador</arg>
+<arg>true</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.695985" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Item" owner="Collections">
+<msg time="2024-03-12T14:34:58.696985" level="INFO">False
+False</msg>
+<arg>${RESP_CONSULTA}</arg>
+<arg>_id</arg>
+<arg>${ID_USUARIO}</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="PASS" start="2024-03-12T14:34:58.695985" elapsed="0.001000"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:58.691870" elapsed="0.005115"/>
+</kw>
+<status status="PASS" start="2024-03-12T14:34:58.131995" elapsed="0.564990"/>
+</test>
+<status status="PASS" start="2024-03-12T14:34:55.829386" elapsed="2.869997"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="Api Testing Usuarios">Api Testing Usuarios</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
