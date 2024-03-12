@@ -4,7 +4,7 @@
 
 ## Informações sobre o projeto
 
-- **API testing:** Utilizando o ServeRest para Get, Post, conferências de JSON.
+- **API testing:** Utilizando o ServeRest para GET, POST, conferências de JSON.
 
 - **Caso de teste:** Nos casos de teste desse projeto temos as validações de cadastro de novo usuário, consulta de dados e tentativa de cadastro de usuário já existente.
 
