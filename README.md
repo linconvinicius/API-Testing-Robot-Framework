@@ -8,7 +8,7 @@
 
 - **Caso de teste:** Nos casos de teste desse projeto temos as validações de cadastro de novo usuário, consulta de dados e tentativa de cadastro de usuário já existente.
 
-- **Resultado dos testes:** Informações sobre os testes executados, evidencia dos testes, tempo de execução e os logs.
+- **Resultado dos testes:** Informações sobre os testes executados, tempo de execução e os logs.
 
 - **Library:** Nesse projeto foram utilizadas: **RequestsLibrary**, **String** e **Collections**.
 
